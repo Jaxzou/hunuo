@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.security.server.dao.SysInformationDao">
+
+	<update id="update">
+		update sys_information
+		<set>
+			<if test="name != null">
+				name = #{name}, 
+			</if>
+			<if test="logoUrl != null">
+				logo_url = #{logoUrl}, 
+			</if>
+			<if test="icoUrl != null">
+				ico_url = #{icoUrl}, 
+			</if>
+			<if test="qrcodeUrl != null">
+				qrcode_url = #{qrcodeUrl},
+			</if>
+			<if test="tel != null">
+				tel = #{tel}, 
+			</if>
+			<if test="email != null">
+				email = #{email}, 
+			</if>
+			<if test="fax != null">
+				fax = #{fax}, 
+			</if>
+			<if test="weburl != null">
+				weburl = #{weburl}, 
+			</if>
+			<if test="address != null">
+				address = #{address}, 
+			</if>
+			<if test="copyright != null">
+				copyright = #{copyright}, 
+			</if>
+			<if test="ABOUTUS1 != null">
+				ABOUTUS1 = #{ABOUTUS1}, 
+			</if>
+			<if test="ABOUTUS2 != null">
+				ABOUTUS2 = #{ABOUTUS2}, 
+			</if>
+
+		</set>
+
+		where information_id = #{informationId}
+	</update>
+
+</mapper>

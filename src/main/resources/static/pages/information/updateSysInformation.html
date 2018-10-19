@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<input type="hidden" id="id" name="id">
+			<div class='form-group'>
+				<div class='col-md-10'>
+					<input placeholder='informationId' type='hidden' name='informationId' id='informationId' >
+					<input placeholder='informationId' type='hidden' name='logoUrl' id='logo_url' >
+					<input placeholder='informationId' type='hidden' name='qrcodeUrl' id='qrcode_url' >
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>网站名称</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='name' type='text' name='name' id='name' data-bv-notempty='true' data-bv-notempty-message='name 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>网址</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='weburl' type='text' name='weburl' id='weburl' data-bv-notempty='true' data-bv-notempty-message='weburl 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>底部版权声明</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='copyright' type='text' name='copyright' id='copyright' data-bv-notempty='true' data-bv-notempty-message='copyright 不能为空'>
+				</div>
+			</div>
+
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>电话</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='tel' type='text' name='tel' id='tel' data-bv-notempty='true' data-bv-notempty-message='tel 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>邮箱</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='email' type='text' name='email' id='email' data-bv-notempty='true' data-bv-notempty-message='email 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>传真</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='fax' type='text' name='fax' id='fax' data-bv-notempty='true' data-bv-notempty-message='fax 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>地址</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='address' type='text' name='address' id='address' data-bv-notempty='true' data-bv-notempty-message='address 不能为空'>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">LOGO</label>
+				<div class="col-md-10">
+					<div class="upload">
+						<div class="uploadArea">
+							<img width="200" id="logopath">
+						</div>
+						<div class="left">
+							<div class="uploadProgressBar"></div>
+							<div class="uploadDelBtn btn btn-danger">删除</div>
+							<div class="uploadBtn webuploader-container">
+								<div id="logoUrl" style="position: absolute; top: 0px; left: 0px; width: 82px; height: 38px; overflow: hidden; bottom: auto; right: auto;">
+									<label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+								</div>
+							</div><!--选择图片-->
+						</div>
+						<div class="clear"></div>
+					</div>
+					<input data-val="true" data-val-maxlength="字段 LOGO 必须是最大长度为“50”的字符串或数组类型。" data-val-maxlength-max="50" id="Logo" name="Logo" type="hidden" value="1d9960e2f8d9491d9d42d2bbe9b1fd57.png">
+					<span class="field-validation-valid" data-valmsg-for="Logo" data-valmsg-replace="true"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-lg-2 control-label">ICO&nbsp;<i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="ico图标是网站的缩略标志，可以显示在浏览器标签、地址栏左边和收藏夹，是展示网站个性的缩略logo标志"></i></label>
+				<div class="col-lg-10">
+					<div class="upload_2">
+						<div class="uploadArea_2">
+						</div>
+						<div class="left">
+							<div class="uploadProgressBar"></div>
+							<div class="uploadDelBtn_2 btn btn-danger" style="display:none;">删除</div>
+							<div class="uploadBtn_2 webuploader-container">
+								<div class="webuploader-pick">选择图片</div>
+								<div id="icoUrl" style="position: absolute; top: 0px; left: 0px; width: 82px; height: 38px; overflow: hidden; bottom: auto; right: auto;">
+								</div>
+							</div>
+							<div class="tips">格式：.ico 尺寸：16px*16px</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<input data-val="true" data-val-maxlength="字段 ICO 必须是最大长度为“50”的字符串或数组类型。" data-val-maxlength-max="50" id="ICO" name="ICO" type="hidden" value="">
+					<span class="field-validation-valid" data-valmsg-for="ICO" data-valmsg-replace="true"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-lg-2 control-label">二维码</label><!--二维码-->
+				<div class="col-lg-10">
+					<div class="upload_1">
+						<div class="uploadArea_1">
+							<img id="qrcodepath" width="200">
+						</div>
+						<div class="left">
+							<div class="uploadProgressBar"></div>
+							<div class="uploadDelBtn_1 btn btn-danger">删除</div>
+							<div class="uploadBtn_1 webuploader-container">
+								<div id="qrcodeUrl" style="position: absolute; top: 0px; left: 0px; width: 82px; height: 38px; overflow: hidden; bottom: auto; right: auto;">
+									<label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+								</div>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<input data-val="true" data-val-maxlength="字段 二维码 必须是最大长度为“50”的字符串或数组类型。" data-val-maxlength-max="50" id="QrCode" name="QrCode" type="hidden" value="fe913d95ce7b42b986fd46c15b620b66.png">
+					<span class="field-validation-valid" data-valmsg-for="QrCode" data-valmsg-replace="true"></span>
+				</div>
+			</div>
+
+			<!--<div class='form-group'>
+				<label class='col-md-2 control-label'>ABOUTUS1</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='ABOUTUS1' type='text' name='ABOUTUS1' id='ABOUTUS1' data-bv-notempty='true' data-bv-notempty-message='ABOUTUS1 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>ABOUTUS2</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='ABOUTUS2' type='text' name='ABOUTUS2' id='ABOUTUS2' data-bv-notempty='true' data-bv-notempty-message='ABOUTUS2 不能为空'>
+				</div>
+			</div>-->
+
+
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='sysInformationList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="update()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+		    var layer = layui.layer;
+		});
+		
+		initData();
+		
+		function initData(){
+			var id = getUrlParam("id");
+			if(id != ""){
+				$.ajax({
+					type : 'get',
+					url : '/sysInformations/'+id,
+					async : false,
+					success : function(data) {
+						$('#informationId').val(data.informationId);
+						$('#name').val(data.name);
+						$('#logopath').attr("src","/statics"+data.logoUrl);
+                        $("#logo_url").val(data.logoUrl);
+						$('#qrcodepath').attr("src","/statics"+data.qrcodeUrl);
+                        $("#qrcode_url").val(data.qrcodeUrl);
+						$('#tel').val(data.tel);
+						$('#email').val(data.email);
+						$('#fax').val(data.fax);
+						$('#weburl').val(data.weburl);
+						$('#address').val(data.address);
+						$('#copyright').val(data.copyright);
+						$('#ABOUTUS1').val(data.ABOUTUS1);
+						$('#ABOUTUS2').val(data.ABOUTUS2);
+
+					}
+				});
+			}
+		}
+
+		function update() {
+			$('#form').bootstrapValidator();
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+		    
+		    var formdata = $("#form").serializeObject();
+
+			$.ajax({
+				type : 'put',
+				url : '/sysInformations',
+				contentType: "application/json; charset=utf-8",  
+				data : JSON.stringify(formdata),
+				success : function(data) {
+					layer.msg("修改成功", {shift: -1, time: 1000}, function(){
+                        location.href = "updateSysInformation.html?id=1";
+                    });
+				}
+			});
+		}
+
+		//上传文件logo
+        layui.use('upload', function(){
+            var upload = layui.upload;
+            upload.render({
+                elem: '#logoUrl' //绑定元素
+                ,accept: 'file' //允许上传的文件类型
+                ,url: '/files' //上传接口
+                ,done: function(res, index, upload){
+                    layer.msg("上传成功");
+                    var pro = window.location.protocol;
+                    var host = window.location.host;
+                    var domain = pro + "//" + host;
+                    var url = res.url;
+                    url = domain + "/statics" + url;
+                    $("#logopath").attr("src",url);
+                    $("#logo_url").val(res.url);
+                }
+            });
+        });
+        //上传文件ico
+        layui.use('upload', function(){
+            var upload = layui.upload;
+            upload.render({
+                elem: '#icoUrl' //绑定元素
+                ,accept: 'file' //允许上传的文件类型
+                ,url: '/files' //上传接口
+                ,done: function(res, index, upload){
+                    layer.msg("上传成功");
+                }
+            });
+        });
+        //上传文件二维码
+        layui.use('upload', function(){
+            var upload = layui.upload;
+            upload.render({
+                elem: '#qrcodeUrl' //绑定元素
+                ,accept: 'file' //允许上传的文件类型
+                ,url: '/files' //上传接口
+                ,done: function(res, index, upload){
+                    layer.msg("上传成功");
+                    var pro = window.location.protocol;
+                    var host = window.location.host;
+                    var domain = pro + "//" + host;
+                    var url = res.url;
+                    url = domain + "/statics" + url;
+                    $("#qrcodepath").attr("src",url);
+                    $("#qrcode_url").val(res.url);
+                }
+            });
+        });
+		
+	</script>
+</body>
+</html>
