@@ -73,8 +73,10 @@
         KindEditor.ready(function (K) {
             editor = K.create('textarea[name="content"]', {
                 //指定上传文件请求的url。
-                uploadJson : '/files',
-                filePostName : "uoloadFile",
+                uploadJson : '../../files',
+                //修改图片空间的地址
+                fileManagerJson:'../../files/manager',
+                allowImageUpload:true,//允许上传图片
                 allowFileManager: true
             });
         });
