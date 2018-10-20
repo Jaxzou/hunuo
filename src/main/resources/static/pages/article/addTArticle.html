@@ -60,9 +60,9 @@
 <script type="text/javascript" src="../../js/common.js"></script>
 <script type="text/javascript" src="../../layui/layui.js"></script>
 <!-- 富文本编辑器 -->
-<link rel="stylesheet" type="text/css" media="screen" href="../../kindeditor/themes/default/default.css"/>
-<script charset="utf-8" type="text/javascript" src="../../kindeditor/kindeditor.js"></script>
-<script charset="utf-8" type="text/javascript" src="../../kindeditor/lang/zh_CN.js"></script>
+<link rel="stylesheet" href="../../kindeditor/themes/default/default.css" />
+<script charset="utf-8" type="text/javascript" src="../../kindeditor/kindeditor-all.js"></script>
+<script charset="utf-8" type="text/javascript" src="../../kindeditor/lang/zh-CN.js"></script>
 <script type="text/javascript">
     layui.use(['layer', 'laydate'], function () {
         var layer = layui.layer;
@@ -73,11 +73,13 @@
         KindEditor.ready(function (K) {
             editor = K.create('textarea[name="content"]', {
                 //指定上传文件请求的url。
-                uploadJson : '../../files',
+                uploadJson : '/kindeditor/uploadFile',
                 //修改图片空间的地址
-                fileManagerJson:'../../files/manager',
-                allowImageUpload:true,//允许上传图片
-                allowFileManager: true
+                fileManagerJson:'../../kindeditor/jsp/file_manager_json.jsp',
+                //允许使用图片空间
+                allowFileManager : true,
+                //允许上传图片
+                allowImageUpload:true
             });
         });
 

@@ -11,14 +11,14 @@
         <div class="form-group">
             <label class="col-md-2 control-label">标题</label>
             <div class="col-md-10">
-                <input style="width:800px;height:50px;" placeholder="title" type="text" name="title" id="title">
+                <input style="width:1024px;height:50px;" placeholder="title" type="text" name="title" id="title">
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-md-2 control-label">内容</label>
             <div class="col-md-10">
-                <textarea name="content" style="width:800px;height:400px;visibility:hidden;" ></textarea>
+                <script id="content" type="text/plain" style="width:1024px;height:500px;"></script>
             </div>
         </div>
         <div class="form-group">
@@ -49,21 +49,22 @@
 <script type="text/javascript" src="../../js/common.js"></script>
 <script type="text/javascript" src="../../js/dict.js"></script>
 <!-- 富文本编辑器 -->
-<link rel="stylesheet" type="text/css" media="screen" href="../../kindeditor/themes/default/default.css" />
-<script charset="utf-8" type="text/javascript" src="../../kindeditor/kindeditor.js"></script>
-<script charset="utf-8" type="text/javascript" src="../../kindeditor/lang/zh_CN.js"></script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<script charset="utf-8" type="text/javascript" src="../../ueditor/ueditor.config.js"></script>
+<script charset="utf-8" type="text/javascript" src="../../ueditor/ueditor.all.min.js"></script>
+<script charset="utf-8" type="text/javascript" src="../../ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
     showDictSelect("status", "noticeStatus");
 
-    KindEditor.ready(function (K) {
-        var editor;
-        KindEditor.ready(function(K) {
-            editor = K.create('textarea[name="content"]', {
-                allowFileManager : true
-            });
-        });
-
-    });
+    var ue = UE.getEditor('content');
+    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+    UE.Editor.prototype.getActionUrl = function(action) {
+        if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
+            return '/imgUpload'; //在这里返回我们实际的上传图片地址
+        } else {
+            return this._bkGetActionUrl.call(this, action);
+        }
+    }
 
 
     function add(obj) {

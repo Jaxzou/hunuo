@@ -58,6 +58,7 @@ mybatis:
     mapUnderscoreToCamelCase: true
 files:
   path: ${file-path:d:/files}
+  #path: ${file-path:/files}
   #path: /uploadfile
 logging:
   config: classpath:logback-admin.xml
