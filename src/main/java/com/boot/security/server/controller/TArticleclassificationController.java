@@ -64,7 +64,7 @@ public class TArticleclassificationController {
 
             @Override
             public List<TArticleclassification> list(PageTableRequest request) {
-                return tArticleclassificationDao.list(request.getParams(), request.getOffset(), request.getLimit());
+                return tArticleclassificationDao.list(request.getParams(), request.getOffset()==null?0:request.getOffset(), request.getLimit()==null?10:request.getLimit());
             }
         }).handle(request);
     }

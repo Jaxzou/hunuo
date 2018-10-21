@@ -2,6 +2,7 @@ package com.boot.security.server.controller;
 
 import java.util.List;
 
+import com.boot.security.server.service.TArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,13 @@ public class TArticleController {
     @Autowired
     private TArticleDao tArticleDao;
 
+    @Autowired
+    private TArticleService tArticleService;
+
     @PostMapping
     @ApiOperation(value = "保存")
     public TArticle save(@RequestBody TArticle tArticle) {
-        tArticleDao.save(tArticle);
-
+        tArticleService.save(tArticle);
         return tArticle;
     }
 

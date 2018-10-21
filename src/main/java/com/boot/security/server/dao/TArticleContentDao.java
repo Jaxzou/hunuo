@@ -30,4 +30,7 @@ public interface TArticleContentDao {
     int count(@Param("params") Map<String, Object> params);
 
     List<TArticleContent> list(@Param("params") Map<String, Object> params, @Param("offset") Integer offset, @Param("limit") Integer limit);
+
+    @Select("select max(id) from t_article_content")
+    Integer getMaxId();
 }

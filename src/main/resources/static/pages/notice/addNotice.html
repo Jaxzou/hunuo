@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <fieldset>
+    <form id="form">
         <div class="form-group">
             <label class="col-md-2 control-label">标题</label>
             <div class="col-md-10">
@@ -18,7 +18,7 @@
         <div class="form-group">
             <label class="col-md-2 control-label">内容</label>
             <div class="col-md-10">
-                <script id="content" type="text/plain" style="width:1024px;height:500px;"></script>
+                <textarea name="content" style="width:1000px;height:400px;visibility:hidden;"></textarea>
             </div>
         </div>
         <div class="form-group">
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-    </fieldset>
+    </form>
 </div>
 
 <script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
@@ -49,22 +49,26 @@
 <script type="text/javascript" src="../../js/common.js"></script>
 <script type="text/javascript" src="../../js/dict.js"></script>
 <!-- 富文本编辑器 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-<script charset="utf-8" type="text/javascript" src="../../ueditor/ueditor.config.js"></script>
-<script charset="utf-8" type="text/javascript" src="../../ueditor/ueditor.all.min.js"></script>
-<script charset="utf-8" type="text/javascript" src="../../ueditor/lang/zh-cn/zh-cn.js"></script>
+<link rel="stylesheet" href="../../kindeditor/themes/default/default.css" />
+<script charset="utf-8" type="text/javascript" src="../../kindeditor/kindeditor-all.js"></script>
+<script charset="utf-8" type="text/javascript" src="../../kindeditor/lang/zh-CN.js"></script>
 <script type="text/javascript">
     showDictSelect("status", "noticeStatus");
 
-    var ue = UE.getEditor('content');
-    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
-    UE.Editor.prototype.getActionUrl = function(action) {
-        if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
-            return '/imgUpload'; //在这里返回我们实际的上传图片地址
-        } else {
-            return this._bkGetActionUrl.call(this, action);
-        }
-    }
+    KindEditor.ready(function (K) {
+        KindEditor.ready(function (K) {
+            window.editor = K.create('textarea[name="content"]', {
+                //指定上传文件请求的url。
+                uploadJson : '/kindeditor/uploadFile',
+                //修改图片空间的地址
+                fileManagerJson:'/kindeditor/fileManager',
+                //允许使用图片空间
+                allowFileManager : true,
+                //允许上传图片
+                allowImageUpload:true
+            });
+        });
+    });
 
 
     function add(obj) {
@@ -80,10 +84,10 @@
         }
         $(obj).attr("disabled", true);
 
+
+        // 将编辑器的HTML数据同步到textarea
+        editor.sync();
         var formdata = $("#form").serializeObject();
-        formdata.title = title;
-        formdata.status = status;
-        formdata.content = layedit.getContent(index);
 
         $.ajax({
             type: 'post',

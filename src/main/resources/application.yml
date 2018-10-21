@@ -58,8 +58,7 @@ mybatis:
     mapUnderscoreToCamelCase: true
 files:
   path: ${file-path:d:/files}
-  #path: ${file-path:/files}
-  #path: /uploadfile
+  #path: ${file-path:/root/files} #linux下的上传文件路径
 logging:
   config: classpath:logback-admin.xml
 log:
