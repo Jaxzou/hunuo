@@ -1,10 +1,7 @@
 package com.boot.security.server.controller;
 
 import java.util.List;
-import java.util.Map;
 
-import com.boot.security.server.model.TArticleContent;
-import com.boot.security.server.service.TArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,40 +17,30 @@ import com.boot.security.server.page.table.PageTableHandler;
 import com.boot.security.server.page.table.PageTableResponse;
 import com.boot.security.server.page.table.PageTableHandler.CountHandler;
 import com.boot.security.server.page.table.PageTableHandler.ListHandler;
-import com.boot.security.server.dao.TArticleDao;
-import com.boot.security.server.model.TArticle;
+import com.boot.security.server.dao.TMessageDao;
+import com.boot.security.server.model.TMessage;
 
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/tArticles")
-public class TArticleController {
+@RequestMapping("/tMessages")
+public class TMessageController {
 
     @Autowired
-    private TArticleDao tArticleDao;
-
-    @Autowired
-    private TArticleService tArticleService;
+    private TMessageDao tMessageDao;
 
     @PostMapping
     @ApiOperation(value = "保存")
-    public TArticle save(@RequestBody TArticle tArticle) {
-        tArticleService.save(tArticle);
-        return tArticle;
+    public TMessage save(@RequestBody TMessage tMessage) {
+        tMessageDao.save(tMessage);
+
+        return tMessage;
     }
 
     @GetMapping("/{id}")
     @ApiOperation(value = "根据id获取")
-    public Map<String,Object> get(@PathVariable Integer id) {
-        Map<String,Object> map = tArticleService.getById(id);
-        return map;
-    }
-
-    @PutMapping
-    @ApiOperation(value = "修改")
-    public TArticle update(@RequestBody TArticle tArticle) {
-        tArticleService.update(tArticle);
-        return tArticle;
+    public TMessage get(@PathVariable Long id) {
+        return tMessageDao.getById(id);
     }
 
     @GetMapping
@@ -63,13 +50,13 @@ public class TArticleController {
 
             @Override
             public int count(PageTableRequest request) {
-                return tArticleDao.count(request.getParams());
+                return tMessageDao.count(request.getParams());
             }
         }, new ListHandler() {
 
             @Override
-            public List<TArticle> list(PageTableRequest request) {
-                return tArticleDao.list(request.getParams(), request.getOffset(), request.getLimit());
+            public List<TMessage> list(PageTableRequest request) {
+                return tMessageDao.list(request.getParams(), request.getOffset(), request.getLimit());
             }
         }).handle(request);
     }
@@ -77,6 +64,6 @@ public class TArticleController {
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除")
     public void delete(@PathVariable Long id) {
-        tArticleDao.delete(id);
+        tMessageDao.delete(id);
     }
 }

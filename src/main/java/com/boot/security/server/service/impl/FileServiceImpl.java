@@ -32,8 +32,9 @@ public class FileServiceImpl implements FileService {
 			throw new IllegalArgumentException("缺少后缀名");
 		}
 
+		String arr[] ={"bmp","jpg","png","tif","gif"};
+
 		String uuid = UUID.randomUUID().toString();
-		//String md5 = FileUtil.fileMd5(file.getInputStream());
 
 		FileInfo fileInfo = fileInfoDao.getById(uuid);
 		if (fileInfo != null) {

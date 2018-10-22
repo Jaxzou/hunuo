@@ -8,7 +8,14 @@ public class TArticle extends BaseEntity<Long> {
 	private Integer classifyId;
 	private Integer contentId;
 	private String status;
+	private String contentAbstract;
+	private String imgUrl;
+	private String annex;
+	private String permission;
+
 	private String content;
+	private Date createTime;
+
 
 	public String getTitle() {
 		return title;
@@ -39,5 +46,35 @@ public class TArticle extends BaseEntity<Long> {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date crateTime) {
+		this.createTime = crateTime;
+	}
+	public String getContentAbstract() {
+		return contentAbstract;
+	}
+	public void setContentAbstract(String contentAbstract) {
+		this.contentAbstract = contentAbstract;
+	}
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+	public String getAnnex() {
+		return annex;
+	}
+	public void setAnnex(String annex) {
+		this.annex = annex;
+	}
+	public String getPermission() {
+		return permission;
+	}
+	public void setPermission(String permission) {
+		this.permission = permission;
 	}
 }

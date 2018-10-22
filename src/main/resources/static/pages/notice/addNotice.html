@@ -55,6 +55,10 @@
 <script type="text/javascript">
     showDictSelect("status", "noticeStatus");
 
+    layui.use('layer', function () {
+        var layer = layui.layer;
+    });
+
     KindEditor.ready(function (K) {
         KindEditor.ready(function (K) {
             window.editor = K.create('textarea[name="content"]', {

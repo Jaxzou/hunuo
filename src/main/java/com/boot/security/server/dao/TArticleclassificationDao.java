@@ -30,4 +30,7 @@ public interface TArticleclassificationDao {
     int count(@Param("params") Map<String, Object> params);
 
     List<TArticleclassification> list(@Param("params") Map<String, Object> params, @Param("offset") Integer offset, @Param("limit") Integer limit);
+
+    @Select("select * from t_articleclassification")
+    List<TArticleclassification> getList();
 }

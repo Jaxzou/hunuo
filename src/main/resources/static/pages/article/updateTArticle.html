@@ -1,103 +1,161 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
 </head>
 <body>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-	<form class="form-horizontal" onsubmit="return false" id="form">
-		<fieldset>
-			<input type="hidden" id="id" name="id">
-			<div class='form-group'>
-				<label class='col-md-2 control-label'>title</label>
-				<div class='col-md-10'>
-					<input class='form-control' placeholder='title' type='text' name='title' id='title' data-bv-notempty='true' data-bv-notempty-message='title 不能为空'>
-				</div>
-			</div>
-			<div class='form-group'>
-				<label class='col-md-2 control-label'>classifyId</label>
-				<div class='col-md-10'>
-					<input class='form-control' placeholder='classifyId' type='text' name='classifyId' id='classifyId' data-bv-notempty='true' data-bv-notempty-message='classifyId 不能为空'>
-				</div>
-			</div>
-			<div class='form-group'>
-				<label class='col-md-2 control-label'>contentId</label>
-				<div class='col-md-10'>
-					<input class='form-control' placeholder='contentId' type='text' name='contentId' id='contentId' data-bv-notempty='true' data-bv-notempty-message='contentId 不能为空'>
-				</div>
-			</div>
+    <form class="form-horizontal" onsubmit="return false" id="form">
+        <fieldset>
+            <input type="hidden" id="id" name="id">
+            <input type="hidden" id="contentId" name="contentId">
+            <input type="hidden" id="createTime" name="createTime">
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>标题</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='title' type='text' name='title' id='title' data-bv-notempty='true' data-bv-notempty-message='title 不能为空'>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>所属分类</label>
+                <div class='col-md-10'>
+                    <select name='classifyId' id='classifyId'>
+                    </select>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>内容</label>
+                <div class='col-md-10'>
+                    <div class="col-md-10">
+                        <textarea id="content" name="content" style="width:1000px;height:400px;visibility:hidden;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>是否可直接发布</label>
+                <div class='col-md-10'>
+                    <select name="status" id="status">
+                    </select>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="row" align="center">
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" onclick="location.href='tArticleList.html'">返回</button>
+                        <button class="btn btn-primary" type="submit" onclick="update()">
+                            <i class="fa fa-save"></i> 保存
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-
-
-			<div class="form-actions">
-				<div class="row" align="center">
-					<div class="col-md-12">
-					    <button class="btn btn-primary" onclick="location.href='tArticleList.html'">返回</button>
-						<button class="btn btn-primary" type="submit" onclick="update()">
-							<i class="fa fa-save"></i> 保存
-						</button>
-					</div>
-				</div>
-			</div>
-
-		</fieldset>
-	</form>
+        </fieldset>
+    </form>
 </div>
-	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="../../js/jq.js"></script>
-	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
-	<script type="text/javascript" src="../../js/common.js"></script>
-	<script type="text/javascript" src="../../layui/layui.js"></script>
-	<script type="text/javascript">
-		layui.use(['layer','laydate'], function(){
-		    var layer = layui.layer;
-		});
-		
-		initData();
-		
-		function initData(){
-			var id = getUrlParam("id");
-			if(id != ""){
-				$.ajax({
-					type : 'get',
-					url : '/tArticles/'+id,
-					async : false,
-					success : function(data) {
-						$('#id').val(data.id);
-						$('#title').val(data.title);
-						$('#createTime').val(data.createTime);
-						$('#classifyId').val(data.classifyId);
-						$('#contentId').val(data.contentId);
+<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/jq.js"></script>
+<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<!-- 富文本编辑器 -->
+<link rel="stylesheet" href="../../kindeditor/themes/default/default.css"/>
+<script charset="utf-8" type="text/javascript" src="../../kindeditor/kindeditor-all.js"></script>
+<script charset="utf-8" type="text/javascript" src="../../kindeditor/lang/zh-CN.js"></script>
+<script type="text/javascript">
+    layui.use(['layer', 'laydate'], function () {
+        var layer = layui.layer;
+    });
+    var content;
+    KindEditor.ready(function (K) {
+        KindEditor.ready(function (K) {
+            editor = K.create('textarea[name="content"]', {
+                //指定上传文件请求的url。
+                uploadJson: '/kindeditor/uploadFile',
+                //修改图片空间的地址
+                fileManagerJson: '/kindeditor/fileManager',
+                //允许使用图片空间
+                allowFileManager: true,
+                //允许上传图片
+                allowImageUpload: true,
+            });
+            K.html('textarea[name="content"]', content);
+        });
+    });
 
-					}
-				});
-			}
-		}
+    initData();
 
-		function update() {
-			$('#form').bootstrapValidator();
-			var bootstrapValidator = $("#form").data('bootstrapValidator');
-			bootstrapValidator.validate();
-		    if(!bootstrapValidator.isValid()){
-			   return;
-		    }
-		    
-		    var formdata = $("#form").serializeObject();
+    function initData() {
+        var id = getUrlParam("id");
+        if (id != "") {
+            $.ajax({
+                type: 'get',
+                url: '/tArticles/' + id,
+                async: false,
+                success: function (data) {
+                    $('#id').val(data.tArticle.id);
+                    $('#title').val(data.tArticle.title);
+                    $('#contentId').val(data.tArticle.contentId);
+                    $('#createTime').val(data.tArticle.createTime);
+                    var classifyId = data.tArticle.classifyId;
 
-			$.ajax({
-				type : 'put',
-				url : '/tArticles',
-				contentType: "application/json; charset=utf-8",  
-				data : JSON.stringify(formdata),
-				success : function(data) {
-					layer.msg("修改成功", {shift: -1, time: 1000}, function(){
-                        location.href = "tArticleList.html";
-                    });
-				}
-			});
-		}
-		
-	</script>
+                    var c1 ;
+                    var c2 ;
+                    var list = data.tArticleclassificationList;//分类列表
+                    for ( var i = 0; i <list.length; i++){
+                        var c = list[i];
+                        if(c.id == classifyId){
+                            c1 = "<option value="+c.id+">"+c.name+"</option>"+"<option value=\"0\">--请选择分类--</option>";
+                        }else{
+                            c2 = "<option value="+c.id+">"+c.name+"</option>";
+                        }
+                    }
+                    $("#classifyId").append(c1 + c2);
+
+                    var status = data.tArticle.status;
+                    if(status==1){
+                        $("#status").append("<option value=\"1\">可发布</option>\n" +
+                            "<option value=\"2\">草稿</option> ");
+                    }else{
+                        $("#status").append("<option value=\"2\">草稿</option>\n" +
+                            "<option value=\"1\">可发布</option> ");
+                    }
+
+                    content =  data.tArticleContent.content;//内容
+                    //editor.html(content.content);
+
+                }
+            });
+        }
+    }
+
+
+    function update() {
+        $('#form').bootstrapValidator();
+        var bootstrapValidator = $("#form").data('bootstrapValidator');
+        bootstrapValidator.validate();
+        if (!bootstrapValidator.isValid()) {
+            return;
+        }
+
+        // 将编辑器的HTML数据同步到textarea
+        editor.sync();
+
+        var formdata = $("#form").serializeObject();
+
+        $.ajax({
+            type: 'put',
+            url: '/tArticles',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(formdata),
+            success: function (data) {
+                layer.msg("修改成功", {shift: -1, time: 1000}, function () {
+                    location.href = "tArticleList.html";
+                });
+            }
+        });
+    }
+
+</script>
 </body>
 </html>
