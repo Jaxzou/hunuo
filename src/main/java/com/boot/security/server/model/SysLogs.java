@@ -1,5 +1,7 @@
 package com.boot.security.server.model;
 
+import java.util.Date;
+
 public class SysLogs extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = -7809315432127036583L;
@@ -8,6 +10,7 @@ public class SysLogs extends BaseEntity<Long> {
 	private Boolean flag;
 	private String remark;
 	private int type;
+	private Date createTime;
 
 	public SysUser getUser() {
 		return user;
@@ -47,5 +50,13 @@ public class SysLogs extends BaseEntity<Long> {
 
 	public void setType(int type) {
 		this.type = type;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 }

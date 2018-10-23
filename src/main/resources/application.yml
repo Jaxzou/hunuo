@@ -56,6 +56,12 @@ mybatis:
   mapper-locations: classpath:/mybatis-mappers/*
   configuration:
     mapUnderscoreToCamelCase: true
+mapper:
+  mappers:
+    - tk.mybatis.mapper.common.Mapper
+  not-empty: false
+  identity: MYSQL
+
 files:
   path: ${file-path:d:/files}
   #path: ${file-path:/root/files} #linux下的上传文件路径

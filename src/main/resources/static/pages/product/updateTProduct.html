@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <form class="form-horizontal" onsubmit="return false" id="form">
+        <fieldset>
+            <input type="hidden" id="id" name="id">
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>产品名称</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='请输入产品名称' type='text' name='name' id='name' data-bv-notempty='true' data-bv-notempty-message='name 不能为空'>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>产品编号</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='请输入产品编号' type='text' name='No' id='No' data-bv-notempty='true' data-bv-notempty-message='pkid 不能为空'>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>价格</label>
+                <div class='col-md-10'>
+                    <input class='form-control' type='text' name='price' id='price' data-bv-notempty='true' value="0" data-bv-notempty-message='price 不能为空'>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>市场价</label>
+                <div class='col-md-10'>
+                    <input class='form-control' type='text' name='marketPrice' id='marketPrice' data-bv-notempty='true' value="0"
+                           data-bv-notempty-message='marketPrice 不能为空'>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>产品分类</label>
+                <div class='col-md-10'>
+                    <select id="productKindId" name="productKindId">
+                    </select>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>产品简介</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='请写产品介绍' type='text' name='content' id='content' data-bv-notempty='true' data-bv-notempty-message='content 不能为空'
+                           style="height:100px;">
+                </div>
+            </div>
+
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>标题</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='titleTab1' type='text' name='titleTab1' id='titleTab1' data-bv-notempty='true'
+                           data-bv-notempty-message='titleTab1 不能为空'>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>内容</label>
+                <div class='col-md-10'>
+                    <textarea id="contentTab1" name="contentTab1" style="width:1000px;height:400px;visibility:hidden;"></textarea>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label">产品图片</label>
+                <div class="col-lg-10">
+                    <div class="upload_1">
+                        <div class="uploadArea_1">
+                            <img width="300" height="200" id="picPath">
+                        </div>
+                        <div class="left">
+                            <div class="uploadProgressBar"></div>
+                            <div class="uploadBtn_1 webuploader-container">
+                                <!--<div class="webuploader-pick">选择图片</div>-->
+                                <div style="position: absolute; top: 0px; left: 0px; width: 82px; height: 38px; overflow: hidden; bottom: auto; right: auto;">
+                                    <label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <input data-val="true" data-val-maxlength-max="50" id="pic" name="pic" type="hidden">
+                    <span class="field-validation-valid" data-valmsg-for="QrCode" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label">上传附件</label>
+                <div class="col-lg-10">
+                    <div class="uploadArea_1">
+                        <span id="fileName"></span>
+                    </div>
+                    <div class="upload_1">
+                        <div class="left">
+                            <div class="uploadProgressBar"></div>
+                            <div class="uploadBtn_1 webuploader-container">
+                                <div id="annex" style="position: absolute; top: 0px; left: 0px; width: 82px; height: 38px; overflow: hidden; bottom: auto; right: auto;">
+                                    <label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <input data-val="true" data-val-maxlength-max="50" id="fileUrl" name="fileUrl" type="hidden">
+                    <span class="field-validation-valid" data-valmsg-for="QrCode" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label">属性</label><!--属性-->
+                <div class="col-lg-10">
+                    <div class="checkbox">
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="status" name="status">
+                            <label for="status"></label>
+                        </div>
+                        <div class="inline-block vertical-top">
+                            下架&nbsp;&nbsp;<!--是否下架-->
+                        </div>
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="isNew" name="isNew">
+                            <label for="isNew"></label>
+                        </div>
+                        <div class="inline-block vertical-top">
+                            是否最新&nbsp;&nbsp;<!--是否最新-->
+                        </div>
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="isRecommend" name="isRecommend">
+                            <label for="isRecommend"></label>
+                        </div>
+                        <div class="inline-block vertical-top">
+                            是否推荐&nbsp;&nbsp;<!--是否推荐-->
+                        </div>
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="isHot" name="isHot">
+                            <label for="isHot"></label>
+                        </div>
+                        <div class="inline-block vertical-top">
+                            是否热门&nbsp;&nbsp;<!--是否热门-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label">访问权限</label><!--访问权限-->
+                <div class="col-lg-10">
+                    <div class="radio inline-block col-lg-2">
+                        <div class="custom-radio m-right-xs">
+                            <input type="radio" id="isUser1" name="isUser" value="on" checked="&quot;checked&quot;">
+                            <label for="isUser1"></label>
+                        </div>
+                        <div class="inline-block vertical-top">
+                            所有用户访问<!--所有用户访问-->
+                        </div>
+                    </div>
+                    <div class="radio inline-block col-lg-2">
+                        <div class="custom-radio m-right-xs">
+                            <input type="radio" id="isUser2" name="isUser" value="off">
+                            <label for="isUser2"></label>
+                        </div>
+                        <div class="inline-block vertical-top">
+                            仅会员访问<!--仅会员访问-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-actions">
+                <div class="row" align="center">
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" onclick="location.href='tProductList.html'">返回</button>
+                        <button class="btn btn-primary" type="submit" onclick="update()">
+                            <i class="fa fa-save"></i> 保存
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/jq.js"></script>
+<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<!-- 富文本编辑器 -->
+<link rel="stylesheet" href="../../kindeditor/themes/default/default.css"/>
+<script charset="utf-8" type="text/javascript" src="../../kindeditor/kindeditor-all.js"></script>
+<script charset="utf-8" type="text/javascript" src="../../kindeditor/lang/zh-CN.js"></script>
+<script type="text/javascript">
+    layui.use(['layer', 'laydate'], function () {
+        var layer = layui.layer;
+    });
+
+    var pro = window.location.protocol;
+    var host = window.location.host;
+    var domain = pro + "//" + host;
+
+    KindEditor.ready(function (K) {
+        KindEditor.ready(function (K) {
+            window.editor = K.create('textarea[name="contentTab1"]', {
+                //指定上传文件请求的url。
+                uploadJson: '/kindeditor/uploadFile',
+                //修改图片空间的地址
+                fileManagerJson: '/kindeditor/fileManager',
+                //允许使用图片空间
+                allowFileManager: true,
+                //允许上传图片
+                allowImageUpload: true
+            });
+        });
+    });
+
+    initData();
+
+    function initData() {
+        var id = getUrlParam("id");
+        if (id != "") {
+            $.ajax({
+                type: 'get',
+                url: '/tProducts/' + id,
+                async: false,
+                success: function (data) {
+                    $('#id').val(data.tProduct.id);
+                    $('#name').val(data.tProduct.name);
+                    $('#No').val(data.tProduct.no);
+                    $('#content').val(data.tProduct.content);
+                    $('#titleTab1').val(data.tProduct.titleTab1);
+                    $('#contentTab1').val(data.tProduct.contentTab1);
+                    $('#price').val(data.tProduct.price);
+                    $('#marketPrice').val(data.tProduct.marketPrice);
+
+                    var productKindId = data.tProduct.productKindId;
+                    var list = data.tProductKindList;
+                    var c1;
+                    var c2;
+                    for (var i = 0;i < list.length; i++){
+                        var c = list[i];
+                        if (c.id == productKindId) {
+                            c1 = "<option value=" + c.id + ">" + c.name + "</option>" + "<option value=\"0\">--请选择分类--</option>";
+                        } else {
+                            c2 = "<option value=" + c.id + ">" + c.name + "</option>";
+                        }
+                    }
+                    $("#productKindId").append(c1 + c2);
+
+                    $('#pic').val(data.tProduct.pic);
+                    var url = data.tProduct.pic;
+                    url = domain + "/statics" + url;
+                    $("#picPath").attr("src", url);
+
+                    $('#fileUrl').val(data.tProduct.fileUrl);
+                    $("#fileName").html(data.tProduct.fileUrl);
+
+                    if(data.tProduct.status == 'on' ){
+                        document.getElementById('status').checked = true;
+                    }
+                    if(data.tProduct.isNew == 'on' ){
+                        document.getElementById('isNew').checked = true;
+                    }
+                    if(data.tProduct.isRecommend == 'on' ){
+                        document.getElementById('isRecommend').checked = true;
+                    }
+                    if(data.tProduct.isHot == 'on' ){
+                        document.getElementById('isHot').checked = true;
+                    }
+
+                    if(data.tProduct.isUser == 'on' ){
+                        document.getElementById('isUser1').checked = true;
+                    }else{
+                        document.getElementById('isUser2').checked = true;
+                    }
+
+                }
+            });
+        }
+    }
+
+    //上传图片
+    layui.use('upload', function () {
+        var upload = layui.upload;
+        upload.render({
+            elem: '#pic' //绑定元素
+            , accept: 'file' //允许上传的文件类型
+            , url: '/files' //上传接口
+            , done: function (res, index, upload) {
+                layer.msg("上传成功");
+                var pro = window.location.protocol;
+                var host = window.location.host;
+                var domain = pro + "//" + host;
+                var url = res.url;
+                url = domain + "/statics" + url;
+                $("#picPath").attr("src", url);
+                $("#pic").val(res.url);
+            }
+        });
+    });
+
+    //上传文件
+    layui.use('upload', function () {
+        var upload = layui.upload;
+        upload.render({
+            elem: '#annex' //绑定元素
+            , accept: 'file' //允许上传的文件类型
+            , url: '/files/annex' //上传接口
+            , done: function (res, index, upload) {
+                layer.msg("上传成功");
+                $("#fileUrl").val(res.url);
+                $("#fileName").html(res.url);
+            }
+        });
+    });
+
+    function update() {
+        $('#form').bootstrapValidator();
+        var bootstrapValidator = $("#form").data('bootstrapValidator');
+        bootstrapValidator.validate();
+        if (!bootstrapValidator.isValid()) {
+            return;
+        }
+        editor.sync();
+        var formdata = $("#form").serializeObject();
+
+        $.ajax({
+            type: 'put',
+            url: '/tProducts',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(formdata),
+            success: function (data) {
+                layer.msg("修改成功", {shift: -1, time: 1000}, function () {
+                    location.href = "tProductList.html";
+                });
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

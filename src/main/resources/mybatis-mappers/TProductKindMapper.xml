@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.security.server.dao.TProductKindDao">
+
+	<sql id="where">
+		<where>
+			<if test="params.id != null and params.id != ''">
+				and id = #{params.id} 
+			</if>
+			<if test="params.pk_id != null and params.pk_id != ''">
+				and pk_id = #{params.pkId} 
+			</if>
+			<if test="params.code != null and params.code != ''">
+				and code = #{params.code} 
+			</if>
+			<if test="params.parent_id != null and params.parent_id != ''">
+				and parent_id = #{params.parentId} 
+			</if>
+			<if test="params.name != null and params.name != ''">
+				and name = #{params.name} 
+			</if>
+			<if test="params.pic != null and params.pic != ''">
+				and pic = #{params.pic} 
+			</if>
+			<if test="params.file != null and params.file != ''">
+				and file = #{params.file} 
+			</if>
+			<if test="params.content != null and params.content != ''">
+				and content = #{params.content} 
+			</if>
+			<if test="params.url != null and params.url != ''">
+				and url = #{params.url} 
+			</if>
+			<if test="params.status != null and params.status != ''">
+				and status = #{params.status} 
+			</if>
+			<if test="params.sort_no != null and params.sort_no != ''">
+				and sort_no = #{params.sortNo} 
+			</if>
+			<if test="params.add_user != null and params.add_user != ''">
+				and add_user = #{params.addUser} 
+			</if>
+			<if test="params.add_time != null and params.add_time != ''">
+				and add_time = #{params.addTime} 
+			</if>
+			<if test="params.mod_user != null and params.mod_user != ''">
+				and mod_user = #{params.modUser} 
+			</if>
+			<if test="params.mod_time != null and params.mod_time != ''">
+				and mod_time = #{params.modTime} 
+			</if>
+			<if test="params.class_list != null and params.class_list != ''">
+				and class_list = #{params.classList} 
+			</if>
+			<if test="params.class_layer != null and params.class_layer != ''">
+				and class_layer = #{params.classLayer} 
+			</if>
+			<if test="params.page_title != null and params.page_title != ''">
+				and page_title = #{params.pageTitle} 
+			</if>
+			<if test="params.page_keywords != null and params.page_keywords != ''">
+				and page_keywords = #{params.pageKeywords} 
+			</if>
+			<if test="params.page_description != null and params.page_description != ''">
+				and page_description = #{params.pageDescription} 
+			</if>
+			<if test="params.seo_type != null and params.seo_type != ''">
+				and seo_type = #{params.seoType} 
+			</if>
+			<if test="params.site_id != null and params.site_id != ''">
+				and site_id = #{params.siteId} 
+			</if>
+			<if test="params.is_index != null and params.is_index != ''">
+				and is_index = #{params.isIndex} 
+			</if>
+			<if test="params.html_name != null and params.html_name != ''">
+				and html_name = #{params.htmlName} 
+			</if>
+			<if test="params.c_view_name != null and params.c_view_name != ''">
+				and c_view_name = #{params.cViewName} 
+			</if>
+			<if test="params.k_view_name != null and params.k_view_name != ''">
+				and k_view_name = #{params.kViewName} 
+			</if>
+			<if test="params.l_view_name != null and params.l_view_name != ''">
+				and l_view_name = #{params.lViewName} 
+			</if>
+			<if test="params.d_view_name != null and params.d_view_name != ''">
+				and d_view_name = #{params.dViewName} 
+			</if>
+		
+		</where>
+	</sql>
+
+	<select id="count" resultType="int">
+		select count(1) from t_product_kind t
+		<include refid="where" />
+	</select>
+
+	<select id="list" resultType="TProductKind">
+		select * from t_product_kind t
+		<include refid="where" />
+		${params.orderBy}
+		limit #{offset}, #{limit}
+	</select>
+
+</mapper>

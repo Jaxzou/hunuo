@@ -1,7 +1,11 @@
 package com.boot.security.server.controller;
 
-import java.util.List;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import com.boot.security.server.service.TProductKindService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,38 +21,46 @@ import com.boot.security.server.page.table.PageTableHandler;
 import com.boot.security.server.page.table.PageTableResponse;
 import com.boot.security.server.page.table.PageTableHandler.CountHandler;
 import com.boot.security.server.page.table.PageTableHandler.ListHandler;
-import com.boot.security.server.dao.TArticleContentDao;
-import com.boot.security.server.model.TArticleContent;
+import com.boot.security.server.dao.TProductKindDao;
+import com.boot.security.server.model.TProductKind;
 
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/tArticleContents")
-public class TArticleContentController {
+@RequestMapping("/tProductKinds")
+public class TProductKindController {
 
     @Autowired
-    private TArticleContentDao tArticleContentDao;
+    private TProductKindService tProductKindService;
+
+    @Autowired
+    private TProductKindDao tProductKindDao;
 
     @PostMapping
     @ApiOperation(value = "保存")
-    public TArticleContent save(@RequestBody TArticleContent tArticleContent) {
-        tArticleContentDao.save(tArticleContent);
-
-        return tArticleContent;
+    public TProductKind save(@RequestBody TProductKind tProductKind) {
+        tProductKind.setCreateTime(new Date());
+        tProductKindService.add(tProductKind);
+        return tProductKind;
     }
 
     @GetMapping("/{id}")
     @ApiOperation(value = "根据id获取")
-    public TArticleContent get(@PathVariable Long id) {
-        return tArticleContentDao.getById(id);
+    public Map<String,Object> get(@PathVariable Long id) {
+        return tProductKindService.findById(id);
     }
 
     @PutMapping
     @ApiOperation(value = "修改")
-    public TArticleContent update(@RequestBody TArticleContent tArticleContent) {
-        tArticleContentDao.update(tArticleContent);
-
-        return tArticleContent;
+    public TProductKind update(@RequestBody TProductKind tProductKind) {
+        if(tProductKind.getStatus() == null){
+            tProductKind.setStatus("off");
+        }
+        if(tProductKind.getIsIndex() == null){
+            tProductKind.setIsIndex("off");
+        }
+        tProductKindService.updateById(tProductKind);
+        return tProductKind;
     }
 
     @GetMapping
@@ -58,13 +70,13 @@ public class TArticleContentController {
 
             @Override
             public int count(PageTableRequest request) {
-                return tArticleContentDao.count(request.getParams());
+                return tProductKindDao.count(request.getParams());
             }
         }, new ListHandler() {
 
             @Override
-            public List<TArticleContent> list(PageTableRequest request) {
-                return tArticleContentDao.list(request.getParams(), request.getOffset(), request.getLimit());
+            public List<TProductKind> list(PageTableRequest request) {
+                return tProductKindDao.list(request.getParams(), request.getOffset()==null?0:request.getOffset(), request.getLimit()==null?100:request.getLimit());
             }
         }).handle(request);
     }
@@ -72,6 +84,6 @@ public class TArticleContentController {
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除")
     public void delete(@PathVariable Long id) {
-        tArticleContentDao.delete(id);
+        tProductKindService.deleteById(id);
     }
 }

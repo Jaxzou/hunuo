@@ -12,4 +12,5 @@ public interface FileService {
 
 	void delete(String id);
 
+	FileInfo saveAnnex(MultipartFile file) throws IOException;
 }

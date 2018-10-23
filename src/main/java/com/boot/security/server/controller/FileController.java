@@ -1,6 +1,7 @@
 package com.boot.security.server.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ import com.boot.security.server.service.FileService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Api(tags = "文件")
 @RestController
 @RequestMapping("/files")
@@ -40,9 +43,30 @@ public class FileController {
 
 	@LogAnnotation
 	@PostMapping
-	@ApiOperation(value = "文件上传")
+	@ApiOperation(value = "图片文件上传")
 	public FileInfo uploadFile(MultipartFile file) throws IOException {
 		return fileService.save(file);
+	}
+
+	@LogAnnotation
+	@PostMapping("/list")
+	@ApiOperation(value = "多图片上传")
+	public List<FileInfo> uploadFiles(MultipartFile[] files,HttpServletRequest request)throws IOException{
+		List<FileInfo> fileInfoList = new ArrayList<>();
+		if (files != null && files.length > 0){
+			for (MultipartFile file : files) {
+				FileInfo fileInfo = fileService.save(file);
+				fileInfoList.add(fileInfo);
+			}
+		}
+		return fileInfoList;
+	}
+
+	@LogAnnotation
+	@PostMapping("/annex")
+	@ApiOperation(value = "文本文件上传")
+	public FileInfo uploadAnnex(MultipartFile file) throws IOException {
+		return fileService.saveAnnex(file);
 	}
 
 	/**

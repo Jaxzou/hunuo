@@ -15,6 +15,16 @@ public class TokenModel extends BaseEntity<String> {
 	 */
 	private String val;
 
+	private Date createTime = new Date();
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
 	public Date getExpireTime() {
 		return expireTime;
 	}

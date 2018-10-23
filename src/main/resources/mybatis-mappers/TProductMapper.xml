@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boot.security.server.dao.TProductDao">
+
+	<sql id="where">
+		<where>
+			<if test="params.id != null and params.id != ''">
+				and id = #{params.id} 
+			</if>
+			<if test="params.pkid != null and params.pkid != ''">
+				and pkid = #{params.pkid} 
+			</if>
+			<if test="params.name != null and params.name != ''">
+				and name = #{params.name} 
+			</if>
+			<if test="params.pic != null and params.pic != ''">
+				and pic = #{params.pic} 
+			</if>
+			<if test="params.content != null and params.content != ''">
+				and content = #{params.content} 
+			</if>
+			<if test="params.url != null and params.url != ''">
+				and url = #{params.url} 
+			</if>
+			<if test="params.hist != null and params.hist != ''">
+				and hist = #{params.hist} 
+			</if>
+			<if test="params.notes != null and params.notes != ''">
+				and notes = #{params.notes} 
+			</if>
+			<if test="params.status != null and params.status != ''">
+				and status = #{params.status} 
+			</if>
+			<if test="params.sort_no != null and params.sort_no != ''">
+				and sort_no = #{params.sortNo} 
+			</if>
+			<if test="params.add_user != null and params.add_user != ''">
+				and add_user = #{params.addUser} 
+			</if>
+			<if test="params.add_time != null and params.add_time != ''">
+				and add_time = #{params.addTime} 
+			</if>
+			<if test="params.mod_user != null and params.mod_user != ''">
+				and mod_user = #{params.modUser} 
+			</if>
+			<if test="params.mod_time != null and params.mod_time != ''">
+				and mod_time = #{params.modTime} 
+			</if>
+			<if test="params.product_kind_id != null and params.product_kind_id != ''">
+				and product_kind_id = #{params.productKindId} 
+			</if>
+			<if test="params.no != null and params.no != ''">
+				and no = #{params.no} 
+			</if>
+			<if test="params.page_title != null and params.page_title != ''">
+				and page_title = #{params.pageTitle} 
+			</if>
+			<if test="params.page_keywords != null and params.page_keywords != ''">
+				and page_keywords = #{params.pageKeywords} 
+			</if>
+			<if test="params.page_description != null and params.page_description != ''">
+				and page_description = #{params.pageDescription} 
+			</if>
+			<if test="params.seo_type != null and params.seo_type != ''">
+				and seo_type = #{params.seoType} 
+			</if>
+			<if test="params.site_id != null and params.site_id != ''">
+				and site_id = #{params.siteId} 
+			</if>
+			<if test="params.tab_1 != null and params.tab_1 != ''">
+				and tab_1 = #{params.tab1} 
+			</if>
+			<if test="params.tab_2 != null and params.tab_2 != ''">
+				and tab_2 = #{params.tab2} 
+			</if>
+			<if test="params.tab_3 != null and params.tab_3 != ''">
+				and tab_3 = #{params.tab3} 
+			</if>
+			<if test="params.tab_4 != null and params.tab_4 != ''">
+				and tab_4 = #{params.tab4} 
+			</if>
+			<if test="params.tab_5 != null and params.tab_5 != ''">
+				and tab_5 = #{params.tab5} 
+			</if>
+			<if test="params.title_tab1 != null and params.title_tab1 != ''">
+				and title_tab1 = #{params.titleTab1} 
+			</if>
+			<if test="params.title_tab2 != null and params.title_tab2 != ''">
+				and title_tab2 = #{params.titleTab2} 
+			</if>
+			<if test="params.title_tab3 != null and params.title_tab3 != ''">
+				and title_tab3 = #{params.titleTab3} 
+			</if>
+			<if test="params.title_tab4 != null and params.title_tab4 != ''">
+				and title_tab4 = #{params.titleTab4} 
+			</if>
+			<if test="params.title_tab5 != null and params.title_tab5 != ''">
+				and title_tab5 = #{params.titleTab5} 
+			</if>
+			<if test="params.content_tab1 != null and params.content_tab1 != ''">
+				and content_tab1 = #{params.contentTab1} 
+			</if>
+			<if test="params.content_tab2 != null and params.content_tab2 != ''">
+				and content_tab2 = #{params.contentTab2} 
+			</if>
+			<if test="params.content_tab3 != null and params.content_tab3 != ''">
+				and content_tab3 = #{params.contentTab3} 
+			</if>
+			<if test="params.content_tab4 != null and params.content_tab4 != ''">
+				and content_tab4 = #{params.contentTab4} 
+			</if>
+			<if test="params.content_tab5 != null and params.content_tab5 != ''">
+				and content_tab5 = #{params.contentTab5} 
+			</if>
+			<if test="params.price != null and params.price != ''">
+				and price = #{params.price} 
+			</if>
+			<if test="params.market_price != null and params.market_price != ''">
+				and market_price = #{params.marketPrice} 
+			</if>
+			<if test="params.file_url != null and params.file_url != ''">
+				and file_url = #{params.fileUrl} 
+			</if>
+			<if test="params.member_price != null and params.member_price != ''">
+				and member_price = #{params.memberPrice} 
+			</if>
+			<if test="params.is_new != null and params.is_new != ''">
+				and is_new = #{params.isNew} 
+			</if>
+			<if test="params.is_recommend != null and params.is_recommend != ''">
+				and is_recommend = #{params.isRecommend} 
+			</if>
+			<if test="params.is_hot != null and params.is_hot != ''">
+				and is_hot = #{params.isHot} 
+			</if>
+			<if test="params.id_user != null and params.id_user != ''">
+				and id_user = #{params.idUser} 
+			</if>
+			<if test="params.html_name != null and params.html_name != ''">
+				and html_name = #{params.htmlName} 
+			</if>
+		
+		</where>
+	</sql>
+
+	<select id="count" resultType="int">
+		select count(1) from t_product t
+		<include refid="where" />
+	</select>
+
+	<select id="list" resultType="TProduct">
+		select * from t_product t
+		<include refid="where" />
+		${params.orderBy}
+		limit #{offset}, #{limit}
+	</select>
+
+
+</mapper>

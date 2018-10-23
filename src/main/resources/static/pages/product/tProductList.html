@@ -25,7 +25,7 @@
                                 </form>
                             </td>
                             <td align="right">
-                                <button class="layui-btn layui-btn-sm" onclick="location.href='addTArticle.html'">
+                                <button class="layui-btn layui-btn-sm" onclick="location.href='addTProduct.html'">
                                     <i class="layui-icon">&#xe608;</i> 添加
                                 </button>
                             </td>
@@ -42,17 +42,15 @@
                         </tr>
                         <tr>
                             <th>id</th>
-                            <th>标题</th>
-                            <th>更新时间</th>
-                            <th>创建时间</th>
-                            <th>分类ID</th>
-                            <th>是否推荐</th>
+                            <th>产品名称</th>
+                            <th>图片</th>
+                            <th>排序号</th>
+                            <th>上下架</th>
+                            <th>所属分类</th>
                             <th>是否最新</th>
-                            <th>是否发布</th>
-                            <th>内容摘要</th>
-                            <th>主图路径</th>
-                            <th>附件路径</th>
-                            <th>是否所有人可访问</th>
+                            <th>是否推荐</th>
+                            <th>是否热门</th>
+                            <th>添加时间</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -75,7 +73,9 @@
 <script type="text/javascript" src="../../js/my/permission.js"></script>
 <script type="text/javascript">
     var pers = checkPermission();
-
+    var pro = window.location.protocol;
+    var host = window.location.host;
+    var domain = pro + "//" + host;
     var example;
 
     function init() {
@@ -88,7 +88,7 @@
                     "url": "/js/plugin/datatables/Chinese.lang"
                 },
                 "ajax": {
-                    "url": "/tArticles",
+                    "url": "/tProducts",
                     "type": "get",
                     "data": function (d) {
                         d.id = $("#id").val();
@@ -97,34 +97,65 @@
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",
                 "columns": [
                     {"data": "id", "defaultContent": ""},
-                    {"data": "title", "defaultContent": ""},
-                    {"data": "updateTime", "defaultContent": ""},
-                    {"data": "createTime", "defaultContent": ""},
-                    {"data": "classifyId", "defaultContent": ""},
-                    {"data": "isRecommend", "defaultContent": ""},
-                    {"data": "isNew", "defaultContent": ""},
-                    {"data": "status", "defaultContent": ""},
-                    {"data": "contentAbstract", "defaultContent": ""},
-                    {"data": "imgUrl", "defaultContent": ""},
-                    {"data": "annexUrl", "defaultContent": ""},
-                    {
-                        "data": "permission", "defaultContent": "",
-                        "render": function (data) {
-                            if(data == 1){
-                                return '所有人可访问';
-                            }else{
-                                return '仅限会员访问';
-                            }
+                    {"data": "name", "defaultContent": ""},
+                    {"data": "pic", "defaultContent": "",
+                        "render": function (data,type,row) {
+                            var url = row['pic'];
+                            var src = domain + "/statics" + url;
+                            url = "<a target='_blank' href='" + src + "'><img width='200' height='80' src='" + src + "'></img></a>";
 
+                            return url;
+                        }},
+                    {"data": "sortNo", "defaultContent": ""},
+                    {
+                        "data": "status", "defaultContent": "",
+                        "render": function (data) {
+                            if (data == 'off') {
+                                return '上架';
+                            } else {
+                                return '下架';
+                            }
                         }
                     },
+                    {"data": "productKindId", "defaultContent": ""},
+                    {
+                        "data": "isNew", "defaultContent": "",
+                        "render": function (data) {
+                            if (data == 'on') {
+                                return '是';
+                            } else {
+                                return '否';
+                            }
+                        }
+                    },
+                    {
+                        "data": "isRecommend", "defaultContent": "",
+                        "render": function (data) {
+                            if (data == 'on') {
+                                return '是';
+                            } else {
+                                return '否';
+                            }
+                        }
+                    },
+                    {
+                        "data": "isHot", "defaultContent": "",
+                        "render": function (data) {
+                            if (data == 'on') {
+                                return '是';
+                            } else {
+                                return '否';
+                            }
+                        }
+                    },
+                    {"data": "addTime", "defaultContent": ""},
                     {
                         "data": "",
                         "defaultContent": "",
                         "orderable": false,
                         "render": function (data, type, row) {
                             var id = row['id'];
-                            var href = "updateTArticle.html?id=" + id;
+                            var href = "updateTProduct.html?id=" + id;
                             var edit = buttonEdit(href, "", pers);
                             var del = buttonDel(id, "", pers);
                             return edit + del;
@@ -146,7 +177,7 @@
         }, function () {
             $.ajax({
                 type: 'delete',
-                url: '/tArticles/' + id,
+                url: '/tProducts/' + id,
                 success: function (data) {
                     example.ajax.reload();
                     layer.msg("删除成功");

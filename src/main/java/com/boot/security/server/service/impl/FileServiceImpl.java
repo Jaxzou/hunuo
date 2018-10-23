@@ -32,8 +32,6 @@ public class FileServiceImpl implements FileService {
 			throw new IllegalArgumentException("缺少后缀名");
 		}
 
-		String arr[] ={"bmp","jpg","png","tif","gif"};
-
 		String uuid = UUID.randomUUID().toString();
 
 		FileInfo fileInfo = fileInfoDao.getById(uuid);
@@ -66,6 +64,36 @@ public class FileServiceImpl implements FileService {
 
 	}
 
+	@Override
+	public FileInfo saveAnnex(MultipartFile file) throws IOException {
+		String fileOrigName = file.getOriginalFilename();
+		if (!fileOrigName.contains(".")) {
+			throw new IllegalArgumentException("缺少后缀名");
+		}
+		long millis = System.currentTimeMillis();
+
+		String pathname = FileUtil.getPath() + millis +"_"+fileOrigName;
+		String fullPath = filesPath +  pathname;
+		FileUtil.saveFile(file, fullPath);
+
+		long size = file.getSize();
+		String contentType = file.getContentType();
+
+
+		FileInfo fileInfo = new FileInfo();
+		fileInfo.setId(millis+"_"+fileOrigName);
+		fileInfo.setContentType(contentType);
+		fileInfo.setSize(size);
+		fileInfo.setPath(fullPath);
+		fileInfo.setUrl(pathname);
+		fileInfo.setType(contentType.startsWith("image/") ? 1 : 0);
+
+		fileInfoDao.save(fileInfo);
+		log.debug("上传文件{}", fullPath,"2");
+
+		return fileInfo;
+	}
+
 
 
 	@Override
@@ -79,5 +107,7 @@ public class FileServiceImpl implements FileService {
 			log.debug("删除文件：{}", fileInfo.getPath());
 		}
 	}
+
+
 
 }

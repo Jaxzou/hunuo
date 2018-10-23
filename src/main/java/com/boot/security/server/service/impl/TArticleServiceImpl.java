@@ -1,15 +1,15 @@
 package com.boot.security.server.service.impl;
 
-import com.boot.security.server.dao.TArticleContentDao;
 import com.boot.security.server.dao.TArticleDao;
 import com.boot.security.server.dao.TArticleclassificationDao;
 import com.boot.security.server.model.TArticle;
-import com.boot.security.server.model.TArticleContent;
 import com.boot.security.server.model.TArticleclassification;
 import com.boot.security.server.service.TArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,53 +26,49 @@ public class TArticleServiceImpl implements TArticleService {
     private TArticleDao tArticleDao;
 
     @Autowired
-    private TArticleContentDao tArticleContentDao;
-
-    @Autowired
     private TArticleclassificationDao tArticleclassificationDao;
 
     @Override
     public void save(TArticle tArticle) {
-        TArticleContent tArticleContent = new TArticleContent();
-        tArticleContent.setContent(tArticle.getContent());
-        tArticleContentDao.save(tArticleContent);
-        Integer contentId = tArticleContentDao.getMaxId();
-
-        tArticle.setContentId(contentId);
-        tArticleDao.save(tArticle);
+        if(tArticle.getStatus() == null){
+            tArticle.setStatus("off");
+        }
+        if(tArticle.getIsNew() == null){
+            tArticle.setIsNew("off");
+        }
+        if(tArticle.getIsRecommend() == null){
+            tArticle.setIsRecommend("off");
+        }
+        Date date = new Date();
+        tArticle.setCreateTime(date);
+        tArticle.setUpdateTime(date);
+        tArticleDao.insertSelective(tArticle);
     }
 
     @Override
     public Map<String,Object> getById(Integer id) {
-
         Map<String,Object> map = new HashMap<>();
-
         TArticle tArticle = tArticleDao.getById(Integer.valueOf(id).longValue());
-        TArticleContent tArticleContent = null;
-        List<TArticleclassification> tArticleclassificationList =null;
-
-        if(tArticle != null){
-            tArticleContent = tArticleContentDao.getById(Integer.valueOf(tArticle.getContentId()).longValue());
-            tArticleclassificationList = tArticleclassificationDao.getList();
-        }
-
-
+        List<TArticleclassification> tArticleclassifications = tArticleclassificationDao.getList();
         map.put("tArticle",tArticle);
-        map.put("tArticleContent",tArticleContent);
-        map.put("tArticleclassificationList",tArticleclassificationList);
-
+        map.put("tArticleclassifications",tArticleclassifications);
         return map;
     }
 
     @Override
     public void update(TArticle tArticle) {
-
-        tArticleDao.update(tArticle);
-
-        TArticleContent tArticleContent = new TArticleContent();
-        tArticleContent.setId(Integer.valueOf(tArticle.getContentId()).longValue());
-        tArticleContent.setContent(tArticle.getContent());
-        tArticleContentDao.update(tArticleContent);
-
+        if(tArticle.getStatus() == null){
+            tArticle.setStatus("off");
+        }
+        if(tArticle.getIsNew() == null){
+            tArticle.setIsNew("off");
+        }
+        if(tArticle.getIsRecommend() == null){
+            tArticle.setIsRecommend("off");
+        }
+        tArticle.setUpdateTime(new Date());
+        Example example = new Example(TArticle.class);
+        example.createCriteria().andEqualTo("id",tArticle.getId());
+        tArticleDao.updateByExample(tArticle,example);
     }
 }

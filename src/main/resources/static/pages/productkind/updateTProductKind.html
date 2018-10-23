@@ -8,32 +8,26 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <form class="form-horizontal" onsubmit="return false" id="form">
         <fieldset>
+            <input type="hidden" id="id" name="id">
             <div class='form-group'>
-                <label class='col-md-2 control-label'>标题</label>
+                <label class='col-md-2 control-label'>分类名称</label>
                 <div class='col-md-10'>
-                    <input class='form-control' placeholder='请输入标题' type='text' name='title' id='title' data-bv-notempty='true' data-bv-notempty-message='title 不能为空'>
+                    <input class='form-control' placeholder='name' type='text' name='name' id='name' data-bv-notempty='true' data-bv-notempty-message='name 不能为空'>
                 </div>
             </div>
+
             <div class='form-group'>
                 <label class='col-md-2 control-label'>所属分类</label>
                 <div class='col-md-10'>
-                    <select name='classifyId' id='classifyId'>
-                        <option value="0">--请选择分类--</option>
+                    <select id="parentId" name="parentId">
+                        <option value="">--请选择分类--</option>
                     </select>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="col-md-2 control-label">内容摘要</label>
-                <div class="col-md-10">
-                    <input id="contentAbstract" name="contentAbstract" placeholder='请输入内容摘要' type="text" style="width:1000px;height:100px"></input>
-                </div>
-            </div>
-
-            <div class="form-group">
-
-                <label class="col-md-2 control-label">详细内容</label>
-                <div class="col-md-10">
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>content</label>
+                <div class='col-md-10'>
                     <textarea id="content" name="content" style="width:1000px;height:400px;visibility:hidden;"></textarea>
                 </div>
             </div>
@@ -43,7 +37,7 @@
                 <div class="col-lg-10">
                     <div class="upload_1">
                         <div class="uploadArea_1">
-                            <img width="300" height="200" id="imgPath">
+                            <img width="300" height="200" id="picPath">
                         </div>
                         <div class="left">
                             <div class="uploadProgressBar"></div>
@@ -56,33 +50,16 @@
                         </div>
                         <div class="clear"></div>
                     </div>
-                    <input data-val="true" data-val-maxlength-max="50" id="imgUrl" name="imgUrl" type="hidden">
+                    <input data-val="true" data-val-maxlength-max="50" id="pic" name="pic" type="hidden">
                     <span class="field-validation-valid" data-valmsg-for="QrCode" data-valmsg-replace="true"></span>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label class="col-lg-2 control-label">上传附件</label>
-                <div class="col-lg-10">
-                    <div class="uploadArea_1">
-                        <span id="pathName"></span>
-                    </div>
-                    <div class="upload_1">
-                        <div class="left">
-                            <div class="uploadProgressBar"></div>
-                            <div class="uploadBtn_1 webuploader-container">
-                                <div id="annex" style="position: absolute; top: 0px; left: 0px; width: 82px; height: 38px; overflow: hidden; bottom: auto; right: auto;">
-                                    <label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <input data-val="true" data-val-maxlength-max="50" id="annexUrl" name="annexUrl" type="hidden">
-                    <span class="field-validation-valid" data-valmsg-for="QrCode" data-valmsg-replace="true"></span>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>排序号</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='sortNo' type='text' name='sortNo' id='sortNo' data-bv-notempty='true' data-bv-notempty-message='sortNo 不能为空' value="0">
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="col-lg-2 control-label">属性</label><!--属性-->
                 <div class="col-lg-10">
@@ -95,30 +72,13 @@
                             是否隐藏&nbsp;&nbsp;<!--是否隐藏-->
                         </div>
                         <div class="custom-checkbox">
-                            <input type="checkbox" id="isNew" name="isNew">
-                            <label for="isNew"></label>
+                            <input type="checkbox" id="isIndex" name="isIndex">
+                            <label for="isIndex"></label>
                         </div>
                         <div class="inline-block vertical-top">
-                            是否最新&nbsp;&nbsp;<!--是否最新-->
-                        </div>
-                        <div class="custom-checkbox">
-                            <input type="checkbox" id="isRecommend" name="isRecommend">
-                            <label for="isRecommend"></label>
-                        </div>
-                        <div class="inline-block vertical-top">
-                            是否推荐&nbsp;&nbsp;<!--是否推荐-->
+                            推荐首页&nbsp;&nbsp;<!--是否推荐-->
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class='form-group'>
-                <label class='col-md-2 control-label'>访问权限</label>
-                <div class='col-md-10'>
-                    <select name="permission" id="permission">
-                        <option value="1">所有人可访问</option>
-                        <option value="2">仅限会员访问</option>
-                    </select>
                 </div>
             </div>
 
@@ -126,8 +86,8 @@
             <div class="form-actions">
                 <div class="row" align="center">
                     <div class="col-md-12">
-                        <button class="btn btn-primary" onclick="location.href='tArticleList.html'">返回</button>
-                        <button class="btn btn-primary" type="submit" onclick="add()">
+                        <button class="btn btn-primary" onclick="location.href='tProductKindList.html'">返回</button>
+                        <button class="btn btn-primary" type="submit" onclick="update()">
                             <i class="fa fa-save"></i> 保存
                         </button>
                     </div>
@@ -143,30 +103,14 @@
 <script type="text/javascript" src="../../js/common.js"></script>
 <script type="text/javascript" src="../../layui/layui.js"></script>
 <!-- 富文本编辑器 -->
-<link rel="stylesheet" href="../../kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="../../kindeditor/themes/default/default.css"/>
 <script charset="utf-8" type="text/javascript" src="../../kindeditor/kindeditor-all.js"></script>
 <script charset="utf-8" type="text/javascript" src="../../kindeditor/lang/zh-CN.js"></script>
 <script type="text/javascript">
     layui.use(['layer', 'laydate'], function () {
         var layer = layui.layer;
     });
-    
-    $(function () {
-        $.ajax({
-            type: 'get',
-            url: '/tArticleclassifications',
-            contentType: "application/json; charset=utf-8",
-            success: function (data) {
-                $(data.data).each(function(i){
-                    var t = data.data[i];
-                    $("#classifyId").append("<option value="+t.id+">--"+t.name+"--</option>");
-                });
-            }
-        })
-    });
-
     KindEditor.ready(function (K) {
-        //var editor;
         KindEditor.ready(function (K) {
             window.editor = K.create('textarea[name="content"]', {
                 //指定上传文件请求的url。
@@ -180,11 +124,57 @@
             });
         });
     });
+    initData();
 
+    function initData() {
+        var id = getUrlParam("id");
+        if (id != "") {
+            $.ajax({
+                type: 'get',
+                url: '/tProductKinds/' + id,
+                async: false,
+                success: function (data) {
+                    $('#id').val(data.tProductKind.id);
+                    $('#name').val(data.tProductKind.name);
+                    $('#pic').val(data.tProductKind.pic);
+                    $('#content').val(data.tProductKind.content);
+                    $('#sortNo').val(data.tProductKind.sortNo);
+
+                    var parentId = data.tProductKind.parentId;
+                    var list = data.tProductKindList;
+                    var c1;
+                    var c2;
+                    for (var i = 0;i < list.length; i++){
+                        var c = list[i];
+                        if (c.id == parentId) {
+                            c1 = "<option value=" + c.id + ">" + c.name + "</option>" + "<option value=\"0\">--请选择分类--</option>";
+                        } else {
+                            c2 = "<option value=" + c.id + ">" + c.name + "</option>";
+                        }
+                    }
+                    $("#parentId").append(c1 + c2);
+
+                    if(data.tProductKind.status == 'on' ){
+                        //$('status').prop('checked','true');
+                        document.getElementById('status').checked = true;
+                    }
+                    if(data.tProductKind.isIndex == 'on' ){
+                        //$('status').prop('checked','true');
+                        document.getElementById('isIndex').checked = true;
+                    }
+
+
+                }
+
+            });
+        }
+    }
+
+    //上传文件
     layui.use('upload', function(){
         var upload = layui.upload;
         upload.render({
-            elem: '#imgUrl' //绑定元素
+            elem: '#pic' //绑定元素
             ,accept: 'file' //允许上传的文件类型
             ,url: '/files' //上传接口
             ,done: function(res, index, upload){
@@ -194,49 +184,31 @@
                 var domain = pro + "//" + host;
                 var url = res.url;
                 url = domain + "/statics" + url;
-                $("#imgPath").attr("src",url);
-                $("#imgUrl").val(res.url);
+                $("#picPath").attr("src",url);
+                $("#pic").val(res.url);
             }
         });
     });
 
-    //上传文件
-    layui.use('upload', function(){
-        var upload = layui.upload;
-        upload.render({
-            elem: '#annex' //绑定元素
-            ,accept: 'file' //允许上传的文件类型
-            ,url: '/files/annex' //上传接口
-            ,done: function(res, index, upload){
-                layer.msg("上传成功");
-                $("#annexUrl").val(res.url);
-                $("#pathName").html(res.url);
-            }
-        });
-    });
-
-    function add() {
+    function update() {
         $('#form').bootstrapValidator();
         var bootstrapValidator = $("#form").data('bootstrapValidator');
         bootstrapValidator.validate();
         if (!bootstrapValidator.isValid()) {
             return;
         }
-
         // 将编辑器的HTML数据同步到textarea
         editor.sync();
-
         var formdata = $("#form").serializeObject();
 
         $.ajax({
-            type: 'post',
-            url: '/tArticles',
+            type: 'put',
+            url: '/tProductKinds',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(formdata),
-            //data: a,
             success: function (data) {
-                layer.msg("添加成功", {shift: -1, time: 1000}, function () {
-                    location.href = "tArticleList.html";
+                layer.msg("修改成功", {shift: -1, time: 1000}, function () {
+                    location.href = "tProductKindList.html";
                 });
             }
         });
