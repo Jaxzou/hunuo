@@ -9,6 +9,7 @@
     <form class="form-horizontal" onsubmit="return false" id="form">
         <fieldset>
             <input type="hidden" id="id" name="id">
+            <input type="hidden" id="createTime" name="createTime">
             <div class='form-group'>
                 <label class='col-md-2 control-label'>标题</label>
                 <div class='col-md-10'>
@@ -170,11 +171,14 @@
                 async: false,
                 success: function (data) {
                     $('#id').val(data.tArticle.id);
+                    $('#createTime').val(data.tArticle.createTime);
                     $('#title').val(data.tArticle.title);
                     $('#content').val(data.tArticle.content);
                     $('#contentAbstract').val(data.tArticle.contentAbstract);
                     $('#imgUrl').val(data.tArticle.imgUrl);
+                    $('#imgPath').attr('src','/statics'+data.tArticle.imgUrl);
                     $('#annexUrl').val(data.tArticle.annexUrl);
+                    $('#pathName').html(data.tArticle.annexUrl);
 
                     var classifyId = data.tArticle.classifyId;
                     var c1;

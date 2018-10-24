@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>name</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='name' type='text' name='name' id='name' data-bv-notempty='true' data-bv-notempty-message='name 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>pic</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='pic' type='text' name='pic' id='pic' data-bv-notempty='true' data-bv-notempty-message='pic 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>content</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='content' type='text' name='content' id='content' data-bv-notempty='true' data-bv-notempty-message='content 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>url</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='url' type='text' name='url' id='url' data-bv-notempty='true' data-bv-notempty-message='url 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>status</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='status' type='text' name='status' id='status' data-bv-notempty='true' data-bv-notempty-message='status 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>sortNo</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='sortNo' type='text' name='sortNo' id='sortNo' data-bv-notempty='true' data-bv-notempty-message='sortNo 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>addUser</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='addUser' type='text' name='addUser' id='addUser' data-bv-notempty='true' data-bv-notempty-message='addUser 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>modUser</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='modUser' type='text' name='modUser' id='modUser' data-bv-notempty='true' data-bv-notempty-message='modUser 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>pageTitle</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='pageTitle' type='text' name='pageTitle' id='pageTitle' data-bv-notempty='true' data-bv-notempty-message='pageTitle 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>pageKeywords</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='pageKeywords' type='text' name='pageKeywords' id='pageKeywords' data-bv-notempty='true' data-bv-notempty-message='pageKeywords 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>pageDescription</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='pageDescription' type='text' name='pageDescription' id='pageDescription' data-bv-notempty='true' data-bv-notempty-message='pageDescription 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>seoType</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='seoType' type='text' name='seoType' id='seoType' data-bv-notempty='true' data-bv-notempty-message='seoType 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>fileUrl</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='fileUrl' type='text' name='fileUrl' id='fileUrl' data-bv-notempty='true' data-bv-notempty-message='fileUrl 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>isUser</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='isUser' type='text' name='isUser' id='isUser' data-bv-notempty='true' data-bv-notempty-message='isUser 不能为空'>
+				</div>
+			</div>
+
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='tDownloadList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="add()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+		    var layer = layui.layer;
+		});
+		
+		function add() {
+			$('#form').bootstrapValidator();
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+		    
+		    var formdata = $("#form").serializeObject();
+
+			$.ajax({
+				type : 'post',
+				url : '/tDownloads',
+				contentType: "application/json; charset=utf-8",  
+				data : JSON.stringify(formdata),
+				success : function(data) {
+					layer.msg("添加成功", {shift: -1, time: 1000}, function(){
+                        location.href = "tDownloadList.html";
+                    });
+				}
+			});
+		}
+		
+	</script>
+</body>
+</html>

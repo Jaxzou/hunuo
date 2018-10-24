@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<input type="hidden" id="id" name="id">
+			<input type="hidden" id="createTime" name="createTime">
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>链接名称</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='name' type='text' name='name' id='name' data-bv-notempty='true' data-bv-notempty-message='name 不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>链接地址</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='url' type='text' name='url' id='url' data-bv-notempty='true' data-bv-notempty-message='url 不能为空'>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2 control-label">上传图片</label>
+				<div class="col-lg-10">
+					<div class="upload_1">
+						<div class="uploadArea_1">
+							<img width="300" height="200" id="picPath">
+						</div>
+						<div class="left">
+							<div class="uploadProgressBar"></div>
+							<div class="uploadBtn_1 webuploader-container">
+								<!--<div class="webuploader-pick">选择图片</div>-->
+								<div style="position: absolute; top: 0px; left: 0px; width: 82px; height: 38px; overflow: hidden; bottom: auto; right: auto;">
+									<label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+								</div>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<input data-val="true" data-val-maxlength-max="50" id="pic" name="pic" type="hidden">
+					<span class="field-validation-valid" data-valmsg-for="QrCode" data-valmsg-replace="true"></span>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>排序号</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='sortNo' type='text' name='sortNo' id='sortNo' data-bv-notempty='true' data-bv-notempty-message='sortNo 不能为空'>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2 control-label">属性</label><!--属性-->
+				<div class="col-lg-10">
+					<div class="checkbox">
+						<div class="custom-checkbox">
+							<input type="checkbox" id="status" name="status"> 是否隐藏&nbsp;&nbsp;<!--是否隐藏-->
+							<label for="status"></label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='tLinksList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="update()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+		    var layer = layui.layer;
+		});
+		
+		initData();
+		
+		function initData(){
+			var id = getUrlParam("id");
+			if(id != ""){
+				$.ajax({
+					type : 'get',
+					url : '/tLinkss/'+id,
+					async : false,
+					success : function(data) {
+						$('#id').val(data.id);
+						$('#name').val(data.name);
+						$('#url').val(data.url);
+						$('#sortNo').val(data.sortNo);
+						$('#createTime').val(data.createTime);
+
+						var pic = data.pic;
+						if(pic != null && pic != ''){
+                            $("#picPath").attr("src", "/statics"+pic);
+						}
+
+                        if(data.status == 'on' ){
+                            document.getElementById('status').checked = true;
+                        }
+
+
+					}
+				});
+			}
+		}
+
+        //上传图片
+        layui.use('upload', function () {
+            var upload = layui.upload;
+            upload.render({
+                elem: '#pic' //绑定元素
+                , accept: 'file' //允许上传的文件类型
+                , url: '/files' //上传接口
+                , done: function (res, index, upload) {
+                    layer.msg("上传成功");
+                    var pro = window.location.protocol;
+                    var host = window.location.host;
+                    var domain = pro + "//" + host;
+                    var url = res.url;
+                    url = domain + "/statics" + url;
+                    $("#picPath").attr("src", url);
+                    $("#pic").val(res.url);
+                }
+            });
+        });
+
+		function update() {
+			$('#form').bootstrapValidator();
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+		    
+		    var formdata = $("#form").serializeObject();
+
+			$.ajax({
+				type : 'put',
+				url : '/tLinkss',
+				contentType: "application/json; charset=utf-8",  
+				data : JSON.stringify(formdata),
+				success : function(data) {
+					layer.msg("修改成功", {shift: -1, time: 1000}, function(){
+                        location.href = "tLinksList.html";
+                    });
+				}
+			});
+		}
+		
+	</script>
+</body>
+</html>

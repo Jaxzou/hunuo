@@ -38,7 +38,7 @@
 	<select id="list" resultType="TMessage">
 		select * from t_message t
 		<include refid="where" />
-		${params.orderBy}
+		order by id desc
 		limit #{offset}, #{limit}
 	</select>
 
