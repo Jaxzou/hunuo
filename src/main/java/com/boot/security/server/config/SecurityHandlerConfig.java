@@ -30,7 +30,6 @@ import com.boot.security.server.utils.ResponseUtil;
  * 
  * @author Jax
  *
- *         2017年10月16日
  */
 @Configuration
 public class SecurityHandlerConfig {

@@ -2,6 +2,9 @@ package com.boot.security.server.model;
 
 import java.util.Date;
 
+/**
+ * 留言
+ */
 public class TMessage extends BaseEntity<Long> {
 
 	private String title;

@@ -1,5 +1,8 @@
 package com.boot.security.server.model;
 
+/**
+ * 发邮件
+ */
 public class MailTo extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = -8238779033956731073L;

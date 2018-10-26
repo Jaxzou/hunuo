@@ -10,7 +10,6 @@ import java.lang.annotation.Target;
  * 
  * @author Jax
  *
- *         2017年8月19日
  */
 @Target({ ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)

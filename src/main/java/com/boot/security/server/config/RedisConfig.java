@@ -15,7 +15,6 @@ import org.springframework.data.redis.serializer.GenericToStringSerializer;
  * 
  * @author Jax
  *
- *         2017年8月10日
  */
 //@EnableRedisHttpSession
 @Configuration

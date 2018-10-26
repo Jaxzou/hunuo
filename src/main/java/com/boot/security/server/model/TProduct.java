@@ -2,6 +2,9 @@ package com.boot.security.server.model;
 
 import java.util.Date;
 
+/**
+ * 产品
+ */
 public class TProduct extends BaseEntity<Long> {
 
 	private Integer pkid;

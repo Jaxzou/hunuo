@@ -2,6 +2,9 @@ package com.boot.security.server.model;
 
 import java.util.Date;
 
+/**
+ * 友情链接
+ */
 public class TLinks extends BaseEntity<Long> {
 
 	private String name;

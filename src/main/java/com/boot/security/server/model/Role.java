@@ -1,5 +1,8 @@
 package com.boot.security.server.model;
 
+/**
+ * 角色
+ */
 public class Role extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = -3802292814767103648L;

@@ -23,7 +23,6 @@ import com.boot.security.server.service.TokenService;
  * 
  * @author Jax
  *
- *         2017年10月14日
  */
 @Component
 public class TokenFilter extends OncePerRequestFilter {

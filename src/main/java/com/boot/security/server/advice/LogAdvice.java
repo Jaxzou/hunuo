@@ -19,8 +19,6 @@ import io.swagger.annotations.ApiOperation;
  * 统一日志处理
  *
  * @author Jax
- *
- *         2017年8月19日
  */
 @Aspect
 @Component

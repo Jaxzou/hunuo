@@ -1,5 +1,8 @@
 package com.boot.security.server.model;
 
+/**
+ * 通知（站内）
+ */
 public class Notice extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = -4401913568806243090L;

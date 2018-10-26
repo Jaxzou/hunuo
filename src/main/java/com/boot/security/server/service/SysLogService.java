@@ -7,7 +7,7 @@ import com.boot.security.server.model.SysLogs;
  * 
  * @author Jax
  *
- *         2017年8月19日
+ *
  */
 public interface SysLogService {
 

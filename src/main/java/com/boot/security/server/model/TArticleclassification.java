@@ -1,7 +1,9 @@
 package com.boot.security.server.model;
 
 
-
+/**
+ * 文章分类
+ */
 public class TArticleclassification extends BaseEntity<Long> {
 
 	private String name;

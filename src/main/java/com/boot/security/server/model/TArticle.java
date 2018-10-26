@@ -2,6 +2,9 @@ package com.boot.security.server.model;
 
 import java.util.Date;
 
+/**
+ * 文章
+ */
 public class TArticle extends BaseEntity<Long> {
 
 	private String title;

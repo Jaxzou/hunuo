@@ -1,5 +1,8 @@
 package com.boot.security.server.model;
 
+/**
+ * 邮件
+ */
 public class Mail extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 5613231124043303948L;

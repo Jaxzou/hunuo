@@ -1,5 +1,8 @@
 package com.boot.security.server.model;
 
+/**
+ * 定时任务
+ */
 public class JobModel extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = -2458935535811207209L;

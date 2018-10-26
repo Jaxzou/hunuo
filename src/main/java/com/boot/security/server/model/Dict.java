@@ -1,5 +1,8 @@
 package com.boot.security.server.model;
 
+/**
+ * 字典
+ */
 public class Dict extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = -2431140186410912787L;

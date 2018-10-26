@@ -11,7 +11,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  * 
  * @author Jax
  *
- *         2017年8月19日
+ *
  */
 @EnableAsync(proxyTargetClass = true)
 @Configuration

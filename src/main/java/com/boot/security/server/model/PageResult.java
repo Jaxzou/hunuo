@@ -5,7 +5,6 @@ import java.util.List;
 
 /**
  * @author Jax.zou
- * @create 2018-09-07 20:53
  * @desc 分页数据类
  **/
 public class PageResult implements Serializable{

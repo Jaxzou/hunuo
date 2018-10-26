@@ -2,6 +2,9 @@ package com.boot.security.server.model;
 
 import java.util.Date;
 
+/**
+ * 日志
+ */
 public class SysLogs extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = -7809315432127036583L;

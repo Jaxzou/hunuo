@@ -4,6 +4,9 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+/**
+ * 用户
+ */
 public class SysUser extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = -6525908145032868837L;

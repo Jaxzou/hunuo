@@ -2,6 +2,9 @@ package com.boot.security.server.model;
 
 import java.util.Date;
 
+/**
+ * 产品分类
+ */
 public class TProductKind extends BaseEntity<Long> {
 
 	private Integer pkId;

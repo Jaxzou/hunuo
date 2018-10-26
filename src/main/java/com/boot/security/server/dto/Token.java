@@ -7,7 +7,6 @@ import java.io.Serializable;
  * 
  * @author Jax
  *
- *         2017年8月4日
  */
 public class Token implements Serializable {
 

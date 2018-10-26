@@ -2,6 +2,9 @@ package com.boot.security.server.model;
 
 import java.util.List;
 
+/**
+ * 菜单
+ */
 public class Permission extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 6180869216498363919L;

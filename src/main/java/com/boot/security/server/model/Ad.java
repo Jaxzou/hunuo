@@ -2,6 +2,9 @@ package com.boot.security.server.model;
 
 import java.util.Date;
 
+/**
+ * 广告
+ */
 public class Ad extends BaseEntity<Long> {
 
 	private String title;
